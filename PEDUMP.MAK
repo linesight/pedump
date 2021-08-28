@@ -13,8 +13,8 @@ OBJS =  PEDUMP.OBJ \
 
 LIBS = USER32.LIB
 
-CFLAGS = /nologo /W3 /DWIN32_LEAN_AND_MEAN
-LFLAGS = /NOLOGO /FIXED /MERGE:.idata=.data /MERGE:.rdata=.text \
+CFLAGS = /nologo /W3 /DWIN32_LEAN_AND_MEAN /D_USE_32BIT_TIME_T
+LFLAGS = /NOLOGO /FIXED /MERGE:.rdata=.text \
 		 /SUBSYSTEM:console 
 
 !if "$(DEBUG)" == "1"

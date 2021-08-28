@@ -12,6 +12,8 @@
 #include "romimage.h"
 #include "extrnvar.h"
 
+#define IMAGE_SIZEOF_ROM_OPTIONAL_HEADER        56
+
 // Global variables set here, and used in EXEDUMP.C and OBJDUMP.C
 BOOL fShowRelocations = FALSE;
 BOOL fShowRawSectionData = FALSE;

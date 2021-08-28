@@ -134,7 +134,7 @@ void DumpImportsSection(DWORD base, PIMAGE_NT_HEADERS pNTHeader)
             }
             else
             {
-                pOrdinalName = thunk->u1.AddressOfData;
+                pOrdinalName = (PIMAGE_IMPORT_BY_NAME)(thunk->u1.AddressOfData);
                 pOrdinalName = (PIMAGE_IMPORT_BY_NAME)
                 			GetPtrFromRVA((DWORD)pOrdinalName, pNTHeader, base);
                     
@@ -255,14 +255,13 @@ void DumpRuntimeFunctions( DWORD base, PIMAGE_NT_HEADERS pNTHeader )
 		return;
 
 	printf( "Runtime Function Table (Exception handling)\n" );
-	printf( "  Begin     End       Handler   HndlData  PrologEnd\n" );
-	printf( "  --------  --------  --------  --------  --------\n" );
+	printf( "  Begin     End\n" );
+	printf( "  --------  --------\n" );
 
 	for ( unsigned i = 0; i < cEntries; i++, pRTFn++ )
 	{
-		printf(	"  %08X  %08X  %08X  %08X  %08X",
-			pRTFn->BeginAddress, pRTFn->EndAddress, pRTFn->ExceptionHandler,
-			pRTFn->HandlerData, pRTFn->PrologEndAddress );
+		printf(	"  %08X  %08X ",
+			pRTFn->BeginAddress, pRTFn->EndAddress);
 
 		if ( g_pCOFFSymbolTable )
 		{
